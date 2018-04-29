@@ -29,6 +29,7 @@ def meme():
         return memegen.bad_template(template)
 
     payload = {"channel": channel_id}
+    print(payload)
     user = slack.find_user_info(user_id)
     print(user)
     payload.update(user)
