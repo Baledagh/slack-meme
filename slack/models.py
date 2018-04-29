@@ -108,7 +108,7 @@ def parse_text_into_params(text):
 
     params = text.split(";")
 
-    template = params[0].strip()
+    template = params[0].strip().encode('utf8')
     print(template)
     del params[0]
 
