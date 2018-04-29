@@ -91,7 +91,7 @@ class Slack:
     def find_user_info(self, user_id):
         url = self.BASE_URL + "/users.info?token={0}&user={1}".format(self.API_TOKEN, user_id)
         response = requests.get(url)
-
+        print(str(response))
         user = response.json()["user"]
         username = user["name"]
         icon_url = user["profile"]["image_48"]
