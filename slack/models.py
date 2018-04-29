@@ -45,9 +45,7 @@ class Memegen:
         return help
 
     def build_url(self, template, top, bottom, alt=None):
-        print("BUILD URL")
         path = "/{0}/{1}/{2}.jpg".format(template.decode('utf8'), top or '_', bottom or '_')
-        print("BUILD URL : {0}".format(path))
         if alt:
             path += "?alt={}".format(alt)
 
@@ -91,13 +89,10 @@ class Slack:
     def find_user_info(self, user_id):
         url = self.BASE_URL + "/users.info?token={0}&user={1}".format(self.API_TOKEN, user_id)
         response = requests.get(url)
-        print(str(response.content))
+        
         user = response.json()["user"]
-        print(str(user))
         username = user["name"]
-        print(str(username))
         icon_url = user["profile"]["image_48"]
-        print(str(icon_url))
         return {"username": username, "icon_url": icon_url}
 
     def post_meme_to_webhook(self, payload):
@@ -111,15 +106,10 @@ def parse_text_into_params(text):
     params = text.split(";")
 
     template = params[0].strip().encode('utf8')
-    print(template)
     #del params[0]
 
     params = [x.strip() for x in params]
-    print(str(params))
     params = [x.replace(" ", "_") for x in params]
-    print(str(params))
     params = [quote(x.encode("utf8")) for x in params]
-    print(str(params))
     params += ["_"] * (3 - len(params))
-    print(str(params))
     return template, params[1], params[2]
