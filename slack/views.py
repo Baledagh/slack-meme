@@ -21,7 +21,7 @@ def meme():
         return memegen.template_list
 
     template, top, bottom = parse_text_into_params(text)
-
+    print(memegen.valid_templates)
     if template in memegen.valid_templates:
         meme_url = memegen.build_url(template, top, bottom)
     elif image_exists(template):
