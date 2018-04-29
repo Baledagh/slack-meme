@@ -93,9 +93,11 @@ class Slack:
         response = requests.get(url)
         print(str(response))
         user = response.json()["user"]
+        print(str(user))
         username = user["name"]
+        print(str(username))
         icon_url = user["profile"]["image_48"]
-
+        print(str(icon_url))
         return {"username": username, "icon_url": icon_url}
 
     def post_meme_to_webhook(self, payload):
