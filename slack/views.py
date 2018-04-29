@@ -19,35 +19,26 @@ def meme():
 
     if text.lower() == "templates":
         return memegen.template_list
-    print("Starting...")
+    
     template, top, bottom = parse_text_into_params(text)
-    print("Parsed Command... Template : " + str(template))
-    print("Valid Templates :" + str(memegen.valid_templates))
     if template in memegen.valid_templates:
-        print("Valid template...")
         meme_url = memegen.build_url(template, top, bottom)
-        print("Built URL : " + str(meme_url))
+        
     elif image_exists(template):
-        print("Image exists !")
         meme_url = memegen.build_url("custom", top, bottom, template)
-        print("Built URL : " + str(meme_url))
+        
     else:
-        print("No template !")
         return memegen.bad_template(template)
 
     payload = {"channel": channel_id}
-    print(str(payload))
     user = slack.find_user_info(user_id)
-    print(str(user))
     payload.update(user)
     
     attachments = [{"image_url": meme_url, "fallback": "; ".join([top, bottom])}]
     payload.update({"attachments": attachments})
-    print(str(payload))
     try:
         slack.post_meme_to_webhook(payload)
     except Exception as e:
-        print("Error while responding")
         return e
 
     return "Success!", 200
