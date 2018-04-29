@@ -21,7 +21,8 @@ def meme():
         return memegen.template_list
     print("Starting...")
     template, top, bottom = parse_text_into_params(text)
-    print("Parsed Command...")
+    print("Parsed Command... Template : " + template)
+    print("Valid Templates :" + str(memegen.valid_templates))
     if template in memegen.valid_templates:
         print("Valid template...")
         meme_url = memegen.build_url(template, top, bottom)
