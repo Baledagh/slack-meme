@@ -19,13 +19,19 @@ def meme():
 
     if text.lower() == "templates":
         return memegen.template_list
-
+    print("Starting...")
     template, top, bottom = parse_text_into_params(text)
+    print("Parsed Command...")
     if template in memegen.valid_templates:
+        print("Valid template...")
         meme_url = memegen.build_url(template, top, bottom)
+        print("Built URL : " + str(meme_url))
     elif image_exists(template):
+        print("Image exists !")
         meme_url = memegen.build_url("custom", top, bottom, template)
+        print("Built URL : " + str(meme_url))
     else:
+        print("No template !")
         return memegen.bad_template(template)
 
     payload = {"channel": channel_id}
