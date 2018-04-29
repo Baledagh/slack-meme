@@ -108,6 +108,7 @@ def parse_text_into_params(text):
     params = text.split(";")
 
     template = u'' + str(params[0].strip())
+    print(template)
     del params[0]
 
     params = [x.strip() for x in params]
