@@ -113,8 +113,11 @@ def parse_text_into_params(text):
     #del params[0]
 
     params = [x.strip() for x in params]
+    print(str(params))
     params = [x.replace(" ", "_") for x in params]
+    print(str(params))
     params = [quote(x.encode("utf8")) for x in params]
-
+    print(str(params))
     params += ["_"] * (3 - len(params))
+    print(str(params))
     return template, params[1], params[2]
