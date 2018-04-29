@@ -46,7 +46,7 @@ class Memegen:
 
     def build_url(self, template, top, bottom, alt=None):
         print("BUILD URL")
-        path = "/{0}/{1}/{2}.jpg".format(str(template), top or '_', bottom or '_')
+        path = "/{0}/{1}/{2}.jpg".format(template.decode('utf8'), top or '_', bottom or '_')
         print("BUILD URL : {0}".format(path))
         if alt:
             path += "?alt={}".format(alt)
