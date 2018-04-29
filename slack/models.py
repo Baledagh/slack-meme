@@ -108,7 +108,7 @@ def parse_text_into_params(text):
 
     params = text.split(";")
 
-    template = b'' + params[0].strip()
+    template = params[0].strip()
     print(template)
     del params[0]
 
